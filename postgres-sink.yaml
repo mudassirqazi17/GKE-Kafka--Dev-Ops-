@@ -1,0 +1,23 @@
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaConnector
+metadata:
+  name: postgres-sink
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: kafka-connect
+spec:
+  class: io.confluent.connect.jdbc.JdbcSinkConnector
+  tasksMax: 3
+
+  config:
+    connection.url: jdbc:postgresql://postgres:5432/kafka
+    connection.user: postgres
+    connection.password: password
+
+    topics: billing-events
+
+    auto.create: true
+    insert.mode: insert
+
+    key.converter: org.apache.kafka.connect.storage.StringConverter
+    value.converter: org.apache.kafka.connect.json.JsonConverter

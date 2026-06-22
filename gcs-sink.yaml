@@ -1,0 +1,21 @@
+apiVersion: kafka.strimzi.io/v1
+kind: KafkaConnector
+metadata:
+  name: gcs-sink
+  namespace: kafka
+  labels:
+    strimzi.io/cluster: kafka-connect
+spec:
+  class: io.confluent.connect.gcs.GcsSinkConnector
+  tasksMax: 3
+
+  config:
+    topics: billing-events
+
+    gcs.bucket.name: kafka-archive-bucket
+
+    format.class: io.confluent.connect.gcs.format.json.JsonFormat
+
+    flush.size: 1000
+
+    storage.class: io.confluent.connect.gcs.storage.GcsStorage

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: akhq
+  namespace: akhq
+spec:
+  type: LoadBalancer
+  selector:
+    app: akhq
+  ports:
+  - port: 80
+    targetPort: 8080
