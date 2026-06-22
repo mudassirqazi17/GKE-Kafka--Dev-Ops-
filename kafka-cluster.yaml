@@ -15,7 +15,7 @@ spec:
     listeners:
       - name: internal
         port: 9092
-        type: loadbalancer 
+        type: cluster-ip 
         tls: false
 
     config:

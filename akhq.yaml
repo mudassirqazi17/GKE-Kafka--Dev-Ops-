@@ -2,26 +2,41 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: akhq
-  namespace: akhq
+  namespace: kafka
+
 spec:
   replicas: 1
+
   selector:
     matchLabels:
       app: akhq
+
   template:
     metadata:
       labels:
         app: akhq
+
     spec:
       containers:
       - name: akhq
         image: tchiotludo/akhq:latest
+
         ports:
         - containerPort: 8080
+
         volumeMounts:
         - name: config
           mountPath: /app/application.yml
           subPath: application.yml
+
+        resources:
+          requests:
+            cpu: "250m"
+            memory: "512Mi"
+          limits:
+            cpu: "500m"
+            memory: "1Gi"
+
       volumes:
       - name: config
         configMap:

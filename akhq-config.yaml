@@ -3,13 +3,14 @@ kind: ConfigMap
 metadata:
   name: akhq-config
   namespace: kafka
+
 data:
   application.yml: |
     akhq:
       connections:
         prod-kafka:
           properties:
-            bootstrap.servers: "prod-kafka-kafka-bootstrap:9092"
+            bootstrap.servers: "prod-kafka-kafka-internal-bootstrap:9092"
 
           schema-registry:
             url: "http://apicurio-registry:8080"

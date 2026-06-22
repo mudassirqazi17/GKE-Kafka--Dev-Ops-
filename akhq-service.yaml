@@ -2,11 +2,15 @@ apiVersion: v1
 kind: Service
 metadata:
   name: akhq
-  namespace: akhq
+  namespace: kafka
+
 spec:
   type: LoadBalancer
+
   selector:
     app: akhq
+
   ports:
-  - port: 80
+  - name: http
+    port: 80
     targetPort: 8080
