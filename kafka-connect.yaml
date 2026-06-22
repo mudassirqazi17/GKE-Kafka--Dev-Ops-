@@ -10,7 +10,7 @@ spec:
 
   replicas: 3
 
-  bootstrapServers: prod-kafka-kafka-bootstrap:9092
+  bootstrapServers: prod-kafka-kafka-internal-bootstrap:9092
 
   groupId: connect-cluster
 
